@@ -1,0 +1,10 @@
+.MuiToolbar-root {
+    background-color: rgb(246, 77, 77);
+    box-shadow: inset 1px 1px 5px rgba(203, 203, 202, 0.5), 1px 1px 3px rgb(169, 167, 167);
+}
+
+.icon {
+    height: 60px;
+    margin-left: 20px;
+}
+
