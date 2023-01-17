@@ -3,7 +3,7 @@ import "./index.css";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="subtitle" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Mui.com
@@ -17,18 +17,18 @@ const Footer = () => {
     <>
       <footer className="footer">
         <div class="border"></div>
-        <Typography variant="h6" align="center">
+        <Typography   variant="h6" align="center" color="textSecondary">
           Сделано по заказу
         </Typography>
         <Typography
-          variant="subtitle1"
+          variant="subtitle2"
           align="center"
           color="textSecondary"
           component="p"
         >
           Здесь могла бы быть ваша реклама
         </Typography>
-        <div className="date" color="Secondary">
+        <div className="date" color="textSecondary" variant="subtitle3">
           {new Date().toLocaleString("Ru", { 
             year: "numeric",
             month: "long",

@@ -1,9 +1,0 @@
- .card {
-     height: 100%;
-     display: flex;
-     flex-direction: column;
- }  
- 
- .showMore {
-    margin-top: auto;
- }

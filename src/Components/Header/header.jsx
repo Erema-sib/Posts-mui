@@ -1,33 +1,42 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  AppBar,
+  Box,
+  Button,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import "./index.css";
-import logo from "./cup.png";
+import logo from "./img.png";
 
-const Header = () => {
+
+function Header({ userInfo }) {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
+        <Typography
+          component="div"
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            alignItems: "center",
+            fontSize: "30px",
+            textShadow: "1px 1px 1px black",
+            fontFamily: "«Great Vibes», cursive",
+            marginLeft: "20px"
+          }}
         >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1, }}>
-          Posts
-          <img className="icon" src={logo} alt="logo"/>
+          
+          Обитель трафика
+          <img className="icon" src={logo} alt="logo" />
         </Typography>
-        <Button color="inherit">Вход</Button>
+        {/* <Button color="inherit">Войти</Button>  */}
+        <Box sx={{ fontFamily: "«Great Vibes», cursive",
+                   fontSize: "18px"}}>
+          {userInfo.name && <span>{userInfo.name}</span>}
+          </Box>
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 export default Header;
- 
-
-
-
