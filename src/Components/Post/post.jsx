@@ -16,7 +16,7 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
 import s from "./index.module.css";
-import cn from "classnames";
+
 
 dayjs.locale("Ru");
 
@@ -28,32 +28,42 @@ const ExpandMore = styled((props) => {
   marginLeft: "auto",
 }));
 
-const Post = ({ _id, image, likes, title, author = {}, text, created_at, onPostLike, currentUser }) => {
-  const { email, avatar, name } = author;
+const Post = ({
+  _id,
+  image,
+  likes,
+  title,
+  author = {},
+  text,
+  created_at,
+  onPostLike,
+  currentUser,
+}) => {
+  const { avatar, name } = author;
   const [expanded, setExpanded] = useState(false);
- 
+  const [isLikeActive, setIsLikeActive] = useState(false);
 
-  const isLike = likes.some((id) => id === currentUser._id);
+   const isLike = likes.some((id) => id === currentUser._id);
 
   function handleLikeClick() {
-    onPostLike({_id, likes})
+    onPostLike({ _id, likes });
+    setIsLikeActive(currentUser => !currentUser);
   }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <Grid container item xs={12} sm={6} md={4}>
-      <Card className={s.card} sx={{backgroundColor:"#f0fdffd7" }}>
-
-   
+      <Card className={s.card} sx={{ backgroundColor: "#f0fdffd7" }}>
         <CardMedia
           component="img"
           height="194"
           image={image}
           alt={`Изображение ${title}`}
         />
-        
+
         <CardContent>
           <Typography variant="h5" component="h2" gutterBottom>
             {title}
@@ -63,7 +73,7 @@ const Post = ({ _id, image, likes, title, author = {}, text, created_at, onPostL
           </Typography>
         </CardContent>
 
-        <CardHeader 
+        <CardHeader
           avatar={
             <Avatar src={avatar && avatar} aria-label="recipe">
               {name?.slice(0, 1).toUpperCase()}
@@ -71,15 +81,20 @@ const Post = ({ _id, image, likes, title, author = {}, text, created_at, onPostL
           }
           title={author.name}
           subheader={dayjs(created_at).format("DD MMMM YYYY")}
-          sx={{margin: "auto"}}
+          sx={{ margin: "auto" }}
         />
-        
+
         <CardActions className={s.showMore} disableSpacing>
-          <IconButton  className={cn("post_favorite",{"post_favorite_is-active" : isLike})} aria-label="add to favorites" onClick={handleLikeClick}
+          <IconButton
+            style={{
+              color: isLike ? "rgb(246, 77, 77)" : "",
+            }}
+            aria-label="add to favorites"
+            onClick={handleLikeClick}
           >
-            <Favorite/>
-            <div className={s.count}>
-            {likes.length > 0 ? <span>{likes.length}</span> : null}
+            <Favorite />
+            <div  className={s.count}>
+              {likes.length > 0 ? <span>{likes.length}</span> : null}
             </div>
           </IconButton>
 
